@@ -107,7 +107,7 @@ mod.directive('dragContainer', [
                 var onDragEnd = $attrs.onDragEnd
                     ? $parse($attrs.onDragEnd)
                     : null;
-                var handle = $rootElement[0].querySelector('[drag-handle]')
+                var $handles = $rootElement.find('[drag-handle]')
                 var dragTarget = null
 
                 $attrs.$addClass('drag-container');
@@ -128,7 +128,7 @@ mod.directive('dragContainer', [
                 }
 
                 function handleDragStart(e) {
-                    if (!handle.contains(dragTarget)) {
+                    if (!$handles.has(dragTarget)) {
                         e.preventDefault();
                         return
                     }
