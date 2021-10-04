@@ -119,7 +119,7 @@ mod.directive('dragContainer', [
                     );
                 });
 
-                $element.on('onmousedown', handleMouseDown);
+                $element.on('mousedown', handleMouseDown);
                 $element.on('dragstart', handleDragStart);
                 $element.on('dragend', handleDragEnd);
 
