@@ -107,7 +107,6 @@ mod.directive('dragContainer', [
                 var onDragEnd = $attrs.onDragEnd
                     ? $parse($attrs.onDragEnd)
                     : null;
-                var $handles = $rootElement.find('[drag-handle]')
                 var dragTarget = null
 
                 $attrs.$addClass('drag-container');
@@ -128,7 +127,7 @@ mod.directive('dragContainer', [
                 }
 
                 function handleDragStart(e) {
-                    if (!$handles.has(dragTarget)) {
+                    if (!Angular.element(dragTarget).closest('[drag-handle]').length) {
                         e.preventDefault();
                         return
                     }
