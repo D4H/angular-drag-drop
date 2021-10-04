@@ -107,6 +107,8 @@ mod.directive('dragContainer', [
                 var onDragEnd = $attrs.onDragEnd
                     ? $parse($attrs.onDragEnd)
                     : null;
+                var handle = $rootElement.querySelector('[drag-handle]')
+                var dragTarget = null
 
                 $attrs.$addClass('drag-container');
 
@@ -117,10 +119,20 @@ mod.directive('dragContainer', [
                     );
                 });
 
+                $element.on('onmousedown', handleMouseDown);
                 $element.on('dragstart', handleDragStart);
                 $element.on('dragend', handleDragEnd);
 
+                function handleMouseDown(e) {
+                    dragTarget = e.target
+                }
+
                 function handleDragStart(e) {
+                    if (!handle.contains(dragTarget)) {
+                        e.preventDefault();
+                        return
+                    }
+
                     $timeout(
                         function() {
                             var target = findDragActiveTarget($rootElement);

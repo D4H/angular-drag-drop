@@ -13,3 +13,4 @@ lib-cov
 node_modules
 
 .vscode
+.idea

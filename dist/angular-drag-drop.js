@@ -52,7 +52,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	var Angular = __webpack_require__(1);
 
@@ -163,6 +163,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                var onDragEnd = $attrs.onDragEnd
 	                    ? $parse($attrs.onDragEnd)
 	                    : null;
+	                var handle = $rootElement.querySelector('[drag-handle]')
+	                var dragTarget = null
 
 	                $attrs.$addClass('drag-container');
 
@@ -173,10 +175,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    );
 	                });
 
+	                $element.on('onmousedown', handleMouseDown);
 	                $element.on('dragstart', handleDragStart);
 	                $element.on('dragend', handleDragEnd);
 
+	                function handleMouseDown(e) {
+	                    dragTarget = e.target
+	                }
+
 	                function handleDragStart(e) {
+	                    if (!handle.contains(dragTarget)) {
+	                        e.preventDefault();
+	                        return
+	                    }
+
 	                    $timeout(
 	                        function() {
 	                            var target = findDragActiveTarget($rootElement);
@@ -617,13 +629,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 
-/***/ },
+/***/ }),
 /* 1 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
-/***/ }
+/***/ })
 /******/ ])
 });
 ;
