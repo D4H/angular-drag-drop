@@ -107,7 +107,7 @@ mod.directive('dragContainer', [
                 var onDragEnd = $attrs.onDragEnd
                     ? $parse($attrs.onDragEnd)
                     : null;
-                var handle = $rootElement.querySelector('[drag-handle]')
+                var handle = $rootElement[0].querySelector('[drag-handle]')
                 var dragTarget = null
 
                 $attrs.$addClass('drag-container');
