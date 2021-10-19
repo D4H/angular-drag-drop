@@ -49,6 +49,7 @@ Define a DOM element that will become draggable and determines what the data ass
 
 ```html
 <div drag-container="true"
+  drag-handle   
   drag-data="model"
   on-drag-start="ctl.handleDragStart($event, $dragData)"
   on-drag-end="ctl.handleDragEnd($event, $dragData)"
@@ -71,7 +72,7 @@ It is optionally set by providing a reference via the `drag-container` attribute
 * `on-drag-start`
 * `on-drag-end`
 
-
+Must set the `drag-handle` attribute on the child element that should be used as a handle.
 
 ### `drop-container`
 
